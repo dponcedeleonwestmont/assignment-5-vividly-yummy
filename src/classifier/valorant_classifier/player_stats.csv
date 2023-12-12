@@ -1,3 +1,4 @@
+,match_id,game_id,team,score_team,opponent,score_opp,win_lose,map,map_pick,player_id,player,agent,rating,acs,kill,death,assist,kast%,adr,hs%,fk,fd
 1372,52769,117165,KOI,20,NAVI,18,team win,Lotus,team pick,2168,trexx,raze,1.18,266,33,28,10,71%,180,18%,11,11
 4759,60391,135659,RRQ,19,ZETA,21,opponent win,Ascent,opponent pick,7045,fl1pzjder,kayo,0.9,160,20,31,18,83%,104,20%,4,11
 5414,61039,137398,DRX,13,LOUD,15,opponent win,Lotus,opponent pick,804,BuZz,raze,0.58,156,15,24,6,57%,108,21%,4,11
