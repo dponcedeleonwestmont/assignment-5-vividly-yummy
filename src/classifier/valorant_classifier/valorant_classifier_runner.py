@@ -9,17 +9,17 @@ __email__ = "jtiao@westmont.edu, dponcedeleon@westmont.edu"
 
 data = pd.read_csv('player_stats.csv')
 
-# Determine the size of the training and test sets
+# Determines the size of the training and test sets
 training_size = int(len(data) * 0.5)  # 70% for training
 test_size = len(data) - training_size
 
-# Create a list of training feature sets
+# Creates a list of training feature sets
 training_feature_sets = []
 
-# Shuffle the data
+# Shuffles the data
 shuffled_indices = random.sample(range(len(data)), len(data))
 
-# Split the shuffled indices into training and test sets
+# Splits the shuffled indices into training and test sets
 training_indices = shuffled_indices[:training_size]
 test_indices = shuffled_indices[training_size:]
 
@@ -29,9 +29,10 @@ for idx in training_indices:
     training_feature_set = ValorantFeatureSet.build(row, known_clas=known_clas)
     training_feature_sets.append(training_feature_set)
 
-# Train the classifier
+# Trains the classifier
 classifier = ValorantAbstractClassifier.train(training_feature_sets)
 
+# Outputs the predicted role in for loop
 i = 0
 correct_predictions = 0
 for idx in test_indices:
@@ -45,8 +46,10 @@ for idx in test_indices:
         correct_predictions += 1
     i += 1
 
+# Prints accuracy
 accuracy = round((correct_predictions / len(test_indices)) * 100, 2)
 print(f"Accuracy: {accuracy}%")
 
+# Prints present features
 top = classifier.present_features(3)
 print(top)
