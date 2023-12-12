@@ -13,9 +13,9 @@ features = data[['player', 'map', 'kill', 'death', 'assist', 'adr', 'fk', 'fd']]
 
 # Training data
 
-training_data = data.sample(n=100, random_state=42)
+training_data = data.sample(n=300, random_state=42)
 
-test_data = data.drop(training_data.index).sample(n=100, random_state=42)
+test_data = data.drop(training_data.index).sample(n=300, random_state=42)
 
 # Define stop words
 stop_words = set(stopwords.words('english'))
@@ -24,21 +24,20 @@ stop_words = set(stopwords.words('english'))
 training_feature_sets = []
 
 for _, row in training_data.iterrows():
-    known_clas = row['agent']
+    known_clas = row['role']
 
-    training_feature_set = [ValorantFeatureSet.build(row, known_clas=known_clas, stop_words=stop_words)]
+    training_feature_set = ValorantFeatureSet.build(row, known_clas=known_clas)
 
     training_feature_sets.append(training_feature_set)
 # Train the classifier
 classifier = ValorantAbstractClassifier.train(training_feature_sets)
 
 
-
-top = classifier.present_features(50)
-print(top)
+# top = classifier.present_features(50)
+# print(top)
 i = 0
-for speech in test_data:
-    test_feature_set = ValorantFeatureSet.build(speech, stop_words=stop_words)
+for index, row in test_data.iterrows():
+    test_feature_set = ValorantFeatureSet.build(row)
     predicted_role = classifier.gamma(test_feature_set)
-    print(f"The predicted role for the player in {i} is: {predicted_role}")
+    print(f"The predicted role for the player in {index} is: {predicted_role}")
     i += 1

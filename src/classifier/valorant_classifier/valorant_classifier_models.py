@@ -67,7 +67,10 @@ class ValorantAbstractClassifier(AbstractClassifier):
                 for role in role_probabilities:
                     role_probabilities[role] += math.log(self.dict[feature.name][role])
 
-        predicted_role = max(role_probabilities, key=role_probabilities.get)
+        total_probability = sum(role_probabilities.values())
+        normalized_probabilities = {role: prob / total_probability for role, prob in role_probabilities.items()}
+
+        predicted_role = max(normalized_probabilities, key=role_probabilities.get)
         return predicted_role
 
     def present_features(self, top_n: int = 1) -> None:
@@ -111,7 +114,7 @@ class ValorantAbstractClassifier(AbstractClassifier):
             for feature in feature_set.feat:
                 if classifier.get(feature.name, 0) == 0:
                     classifier[feature.name] = {role: 0 for role in ['duelist', 'sentinel', 'initiator', 'controller']}
-                    classifier[feature.name][feature_set.clas] += 1
+                classifier[feature.name][feature_set.clas] += 1
 
         for feature in classifier.keys():
             for role in ['duelist', 'sentinel', 'initiator', 'controller']:
