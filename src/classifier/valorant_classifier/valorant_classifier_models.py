@@ -16,6 +16,14 @@ class ValorantFeature(Feature):
 
 # Represents a set of features for a single object in the Valorant context
 class ValorantFeatureSet(FeatureSet):
+
+    """A set of features that represent a single object in the context of Valorant gameplay. Optionally includes
+        the known role (class) of the Valorant agent.
+
+        Attributes:
+            _feat (set[ValorantFeature]): A set of Valorant-specific features defining this object for classification.
+            _clas (str | None): Optional attribute set as the pre-defined role (class) of this Valorant agent.
+        """
     def __init__(self, features: set[Feature], known_clas=None):
         super().__init__(features, known_clas)
 
@@ -48,7 +56,12 @@ class ValorantAbstractClassifier(AbstractClassifier):
         self.dict = classifier
 
     def gamma(self, a_feature_set: ValorantFeatureSet) -> str:
-        # Given a feature set, calculate the most probable class (role) using the trained classifier
+        """Given a single feature set representing an object to be classified, returns the most probable class
+                for the object based on the training this classifier received (via a call to `train` class method).
+
+                :param a_feature_set: a single feature set representing an object to be classified
+                :return: name of the class with the highest probability for the object
+                """
         role_probabilities = {role: 0.0 for role in ['duelist', 'sentinel', 'initiator', 'controller']}
         for feature in a_feature_set.feat:
             if feature.name in self.dict:
@@ -61,7 +74,12 @@ class ValorantAbstractClassifier(AbstractClassifier):
         return predicted_role
 
     def present_features(self, top_n: int = 1) -> None:
-        # Prints the top N features
+        """Prints `top_n` feature(s) used by this classifier in the descending order of informativeness of the
+                feature in determining a class for any object. Informativeness of a feature is a quantity that represents
+                how "good" a feature is in determining the class for an object.
+
+                :param top_n: how many of the top features to print; must be 1 or greater
+                """
         sorted_features = sorted(self.dict.items(), key=lambda item: max(item[1].values()), reverse=True)
         print(f"Top {top_n} features:")
         for feature, role_probs in sorted_features[:top_n]:
@@ -71,7 +89,13 @@ class ValorantAbstractClassifier(AbstractClassifier):
 
     @classmethod
     def train(cls, training_set: Iterable[FeatureSet]) -> AbstractClassifier:
-        # Trains the classifier
+        """Method that builds a Valorant Classifier instance with its training (supervised learning) already completed.
+                The `AbstractClassifier` instance returned as the result of invoking this method must support `gamma` and
+                `present_features` method calls immediately without needing any other method invocations prior to them.
+
+                :param training_set: An iterable collection of `ValorantFeatureSet` to use for training the Valorant classifier.
+                :return: An instance of `AbstractClassifier` with its training already completed.
+                """
         classifier = {}
         role_tallies = {role: 0 for role in ['duelist', 'sentinel', 'initiator', 'controller']}
         for fset in training_set:
