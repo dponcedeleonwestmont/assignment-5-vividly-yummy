@@ -33,8 +33,7 @@ for idx in training_indices:
 # Train the classifier
 classifier = ValorantAbstractClassifier.train(training_feature_sets)
 
-# top = classifier.present_features(50)
-# print(top)
+
 i = 0
 correct_predictions = 0
 for idx in test_indices:
@@ -49,3 +48,6 @@ for idx in test_indices:
 
 accuracy = round((correct_predictions / len(test_indices)) * 100, 2)
 print(f"Accuracy: {accuracy}%")
+
+top = classifier.present_features(3)
+print(top)
