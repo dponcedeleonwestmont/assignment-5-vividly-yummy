@@ -1,4 +1,4 @@
-from political_party_classifier_models import *
+from valorant_classifier_models import *
 from nltk.corpus import stopwords
 
 __author__ = "Eli Tiao, David Ponce De Leon"
