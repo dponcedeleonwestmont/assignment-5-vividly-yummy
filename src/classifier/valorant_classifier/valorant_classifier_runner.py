@@ -9,7 +9,6 @@ __credits__ = ["Eli Tiao", "David Ponce De Leon"]
 __email__ = "jtiao@westmont.edu, dponcedeleon@westmont.edu"
 
 data = pd.read_csv('player_stats.csv')
-features = data[['player', 'map', 'kill', 'death', 'assist', 'adr', 'fk', 'fd']]
 
 # Determine the size of the training and test sets
 training_size = int(len(data) * 0.5)  # 70% for training

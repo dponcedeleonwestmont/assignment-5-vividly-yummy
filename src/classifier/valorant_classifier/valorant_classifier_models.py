@@ -1,6 +1,5 @@
 import pandas as pd
 import math
-import random
 from classifier.classifier_models import *
 
 __author__ = "Eli Tiao, David Ponce De Leon"
@@ -37,10 +36,29 @@ class ValorantFeatureSet(FeatureSet):
         """
         player = source_object['player']
         map = source_object['map']
+        # agent = source_object['agent']
+        kill = source_object['kill']
+        firstblood = source_object['fk']
+        assists = source_object['assist']
         numerical_stats = source_object[['kill', 'death', 'assist', 'adr', 'fk', 'fd']]
         features = {ValorantFeature('player' + name, True) for name in player}
         features |= {ValorantFeature('map' + map_name, True) for map_name in map}
+        # features |= {ValorantFeature('agent' + agent, True) for agent in agent}
         features |= {ValorantFeature(stat, numerical_stats[stat]) for stat in numerical_stats.index}
+        if kill > 14:
+            features |= {ValorantFeature('15+kill', True)}
+        if firstblood > 4:
+            features |= {ValorantFeature('5+fb', True)}
+        if assists > 6:
+            features |= {ValorantFeature('4+as', True)}
+        # if agent == 'jett':
+        #     features |= {ValorantFeature('isjett', True)}
+        # if agent == 'phoenix':
+        #     features |= {ValorantFeature('isphx', True)}
+        # if agent == 'omen':
+        #     features |= {ValorantFeature('isomen', True)}
+        # if agent == 'viper':
+        #     features |= {ValorantFeature('isviper', True)}
 
         return ValorantFeatureSet(features, known_clas)
 
