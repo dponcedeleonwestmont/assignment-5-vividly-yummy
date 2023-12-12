@@ -64,10 +64,7 @@ class ValorantAbstractClassifier(AbstractClassifier):
             max_role = max(role_probs, key=role_probs.get)
             max_prob = role_probs[max_role]
 
-            if max_prob > 1.0:
-                max_prob = 1.0
-
-            print(f"{feature} is a strong predictor for {max_role}, Probability: {max_prob:.2%}")
+            print(f"{feature} predicts the role: {max_role}, Probability: {max_prob:.2%}")
 
     @classmethod
     def train(cls, training_set: Iterable[FeatureSet]) -> AbstractClassifier:
