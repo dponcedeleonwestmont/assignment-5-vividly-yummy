@@ -28,11 +28,11 @@ class ValorantFeatureSet(FeatureSet):
         features.add(ValorantFeature('player' + player, True))
         features.add(ValorantFeature('map' + mapname, True))
         if kill > 14:
-            features |= {ValorantFeature('15+kill', True)}
-        if firstblood > 4:
-            features |= {ValorantFeature('5+fb', True)}
+            features |= {ValorantFeature('15+ kills', True)}
+        if firstblood > 2:
+            features |= {ValorantFeature('3+ firstbloods', True)}
         if assists > 6:
-            features |= {ValorantFeature('4+as', True)}
+            features |= {ValorantFeature('7+ asists', True)}
 
 
         return ValorantFeatureSet(features, known_clas)

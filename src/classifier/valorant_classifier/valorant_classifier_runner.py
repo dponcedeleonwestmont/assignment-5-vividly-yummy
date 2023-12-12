@@ -48,5 +48,5 @@ for idx in test_indices:
 accuracy = round((correct_predictions / len(test_indices)) * 100, 2)
 print(f"Accuracy: {accuracy}%")
 
-top = classifier.present_features(20)
+top = classifier.present_features(3)
 print(top)
