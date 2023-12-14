@@ -1,7 +1,7 @@
 import pandas as pd
 import math
 import sys
-from classifier.classifier_models import *
+from classifier2 import *
 
 __author__ = "Eli Tiao, David Ponce De Leon"
 __copyright__ = "Copyright 2023, Westmont College"
