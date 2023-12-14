@@ -7,7 +7,7 @@ __copyright__ = "Copyright 2023, Westmont College"
 __credits__ = ["Eli Tiao", "David Ponce De Leon"]
 __email__ = "jtiao@westmont.edu, dponcedeleon@westmont.edu"
 
-data = pd.read_csv('player_stats.csv')
+data = pd.read_csv('../../../player_stats.csv')
 
 # Determines the size of the training and test sets
 training_size = int(len(data) * 0.5)  # 70% for training
@@ -41,7 +41,7 @@ for idx in test_indices:
     predicted_role = classifier.gamma(test_feature_set)
     actual_role = row['role']
     agent = row['agent']
-    print(f"[{idx}] The classified role of the agent {agent} is: {predicted_role}")
+    print(f"[{idx}] The classified role of the agent {agent} is: {predicted_role}; actual role: {actual_role}")
     if predicted_role == actual_role:
         correct_predictions += 1
     i += 1
