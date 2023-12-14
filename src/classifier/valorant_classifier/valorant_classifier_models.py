@@ -1,6 +1,6 @@
 import pandas as pd
 import math
-from classifier_models import *
+from ../classifier_models import *
 
 __author__ = "Eli Tiao, David Ponce De Leon"
 __copyright__ = "Copyright 2023, Westmont College"
