@@ -29,7 +29,7 @@ valorant-role-prediction/
 
 ### Program Details
 
-* The program uses statistical analysis processing techniques to predict the in-game role of Valorant players.
+* The program uses Naive Bayes techniques to predict the in-game role of Valorant players.
 * It leverages a custom-built Valorant FeatureSet and AbstractClassifier for role prediction.
 
 ## How the Program Works
@@ -60,7 +60,7 @@ valorant-role-prediction/
 
 #### `train` Class Method
 
-- Builds a Valorant classifier instance with its training (supervised learning) already completed.
+- Builds a Valorant classifier instance with its training already completed.
 
 - The `train` method takes an iterable collection of `ValorantFeatureSet` instances as its parameter.
 
