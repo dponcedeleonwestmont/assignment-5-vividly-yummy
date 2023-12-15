@@ -1,12 +1,15 @@
 # Valorant Role Prediction Classifier
 
-### Demo Code: 
-
 ### Overview
 
 This Python program utilizes match history from the 2023 VCT Season (via Kaggle CSV) 
 to predict the in-game role (duelist, sentinel, initiator, controller) of Valorant players 
 based on their performance statistics as well as other factors such as player and map. 
+
+#### Extra Credit
+
+In addition to the base project, we also completed both the GCloud API component as well as 
+the low-level PySpark query.
 
 # Project Structure
 
@@ -21,7 +24,9 @@ valorant-role-prediction/
 │   ├── classifier_models.py     # Definitions of the superclass classifier models
 │   └── valorant_classifier/     # Package for Valorant-specific classifier implementation
 │       ├── __init__.py          # Initialization file for the Valorant classifier package
+│       ├── classifier2.py       # Duplicate of classifier_models.py superclass for GCloud scope
 │       ├── player_stats.csv     # Dataset for both training and testing [half allocated towards each]
+│       ├── pyspark_runner.py    # Pyspark runner for query
 │       ├── valorant_classifier_models.py  # Valorant-specific classifier models
 │       └── valorant_classifier_runner.py  # Valorant-specific classifier runner
 └── README.md                    # Project documentation
